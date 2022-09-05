@@ -95,6 +95,7 @@ section h2{
 #voltar a{
     position: relative;
     text-transform: uppercase;
+    text-decoration-line: none;
     font-size: 12px;
     bottom: 0%;
     left: 65%;
