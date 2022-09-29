@@ -1,27 +1,26 @@
-const formulario = document.getElementById('form-aula');
-const botao = formulario[2];
-console.log(formulario)
-
-function validaMaiorQue(maiorQue,MenorQue){
-    if(maiorQue > MenorQue){
-        return true;
-    }else{
-        return false;
-    }
-}
-
-function displayInfo(){
+$(document).ready(function() { 
+    $('header button').click(function(){
+        $('form').slideDown();
+    });
+    $('#btn-cancelar').click(function(){
+        $('form').slideUp();
+    });
     
-}
+    $('form').on('submit', function(e){
+        const enderecoNovaImagem = $('#endereco-image').val();
+        e.preventDefault();
 
-formulario.addEventListener('submit', function(e){
-    e.preventDefault();
-    let numberB = formulario[1].value;
-    let numberA = formulario[0].value; 
-    if(validaMaiorQue(numberB,numberA)){
-       alert(`Funcionou, o numero ${numberB} é maior que ${numberA}`);
-    }
-    else{
-        alert(`ERROU!!, o numero ${numberB} não é maior que ${numberA}`)
-    }
+        const novoItem = $('<li style="display: none"> </li>');
+
+        $(`<img src="${enderecoNovaImagem}" />`).appendTo(novoItem);
+        $(
+        `<div class="overlay-imagem-link">
+            <a href="${enderecoNovaImagem}" target="_blank" title="Ver imagem em Tamanho real" >
+                Ver Imagem em Tamanho Real
+            </a>
+        </div>`).appendTo(novoItem);
+        $(novoItem).appendTo('ul');
+        $(novoItem).fadeIn(1000);
+        $('#endereco-image').val('');
+    });
 })
